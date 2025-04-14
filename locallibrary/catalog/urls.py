@@ -1,5 +1,8 @@
 from django.urls import path
 from . import views
+from .views import (BookListCreateAPIView, BookRetrieveUpdateDestroyAPIView,
+                    AuthorListCreateAPIView, AuthorRetrieveUpdateDestroyAPIView,
+                    GenreListCreateAPIView, GenreRetrieveUpdateDestroyAPIView)
 
 urlpatterns = [
   path('', views.index, name='index'),
@@ -13,5 +16,16 @@ urlpatterns = [
   path('author/create/', views.AuthorCreate.as_view(), name='author-create'),
   path('author/<int:pk>/update/', views.AuthorUpdate.as_view(), name='author-update'),
   path('author/<int:pk>/delete/', views.AuthorDelete.as_view(), name='author-delete'),
+  #Book API
+  path('api/books/', BookListCreateAPIView.as_view(), name='book-list-create'),
+  path('api/books/<int:pk>/', BookRetrieveUpdateDestroyAPIView.as_view(), name='book-detail'),
+  # Author API
+  path('api/authors/', AuthorListCreateAPIView.as_view(), name='author-list-create'),
+  path('api/authors/<int:pk>/', AuthorRetrieveUpdateDestroyAPIView.as_view(), name='author-detail'),
+  
+  #Genre API
+  path('api/genres/', GenreListCreateAPIView.as_view(), name='genre-list-create'),
+  path('api/genres/<int:pk>/', GenreRetrieveUpdateDestroyAPIView.as_view(), name='genre-detail'),
+
 
 ]
