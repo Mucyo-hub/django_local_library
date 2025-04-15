@@ -3,6 +3,7 @@ from . import views
 from .views import (BookListCreateAPIView, BookRetrieveUpdateDestroyAPIView,
                     AuthorListCreateAPIView, AuthorRetrieveUpdateDestroyAPIView,
                     GenreListCreateAPIView, GenreRetrieveUpdateDestroyAPIView)
+from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
   path('', views.index, name='index'),
@@ -26,6 +27,7 @@ urlpatterns = [
   #Genre API
   path('api/genres/', GenreListCreateAPIView.as_view(), name='genre-list-create'),
   path('api/genres/<int:pk>/', GenreRetrieveUpdateDestroyAPIView.as_view(), name='genre-detail'),
+  path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
 
 
 ]
